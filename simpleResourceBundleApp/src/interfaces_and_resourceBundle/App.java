@@ -1,5 +1,3 @@
-package interfaces_and_resourceBundle;
-
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -11,27 +9,27 @@ public class App {
     public static void main(String[] args){
         Operations c = new Operations();
         int choice = 0, aux;
-        System.out.println("Choose your language:\n1 - Português\n2 - English\n");
+        System.out.println("--Languague:\n--1 - Português\n--2 - English\n--3 - Français\n");
         ResourceBundle rb = languageChoice(checkLanguage(choice));
 
-        System.out.println(rb.getString("operation"));
+        System.out.println("--" + rb.getString("operation"));
         aux = checkOperation(choice, rb);
-        System.out.println(rb.getString("number"));
+        System.out.println("--" + rb.getString("number"));
         switch(aux){
             case 1:
-                System.out.println(rb.getString("result")  + " " + c.calculaSoma());
+                System.out.println("--" + rb.getString("result")  + " " + c.calculaSoma());
             break;
 
             case 2:
-                System.out.println(rb.getString("result")  + " "  + c.calculaSub());
+                System.out.println("--" + rb.getString("result")  + " "  + c.calculaSub());
                 break;
 
             case 3:
-                System.out.println(rb.getString("result")  + " "  + c.calculaSMult());
+                System.out.println("--" + rb.getString("result")  + " "  + c.calculaSMult());
                 break;
 
             case 4:
-                System.out.println(rb.getString("result")  + " "  + c.calculaDiv());
+                System.out.println("--" + rb.getString("result")  + " "  + c.calculaDiv());
                 break;
 
         }
@@ -48,14 +46,18 @@ public class App {
             rb = ResourceBundle.getBundle("messages",new Locale("en","US"));
             return rb;
 
+            case 3:
+            rb = ResourceBundle.getBundle("messages",new Locale("fr","FR"));
+            return rb;
+
             default: return null;
         }
     }
 
     private static int checkLanguage(int input){
-            while(input < 1 || input > 2){
+            while(input < 1 || input > 3){
                 if(input != 0)
-                    System.out.println("Insert a valid input.\n1 - Português\n2 - English\n");
+                    System.out.println("--Insert a valid input.\n1 - Português\n2 - English\n3 - Français\n");
                 input = sc.nextInt();
             }
             return input;
@@ -64,7 +66,7 @@ public class App {
     private static int checkOperation(int input, ResourceBundle rb){
         while(input < 1 || input > 4){
             if(input != 0)
-            System.out.println(rb.getString("error"));
+            System.out.println("--" + rb.getString("error"));
             input = sc.nextInt();
         }
         return input;
