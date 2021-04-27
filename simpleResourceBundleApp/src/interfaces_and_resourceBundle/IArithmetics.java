@@ -1,4 +1,4 @@
-package interfaces_and_resourceBundle;
+
 
 public interface IArithmetics {
 
